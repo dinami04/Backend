@@ -1,11 +1,11 @@
-const mysql = require("mysql2");
+const mysql = require("mysql");
 
-const db = mysql.createPool({
-  host: "localhost",
+const db = mysql.createConnection({
+  host: "metro.proxy.rlwy.net",
   user: "root",
-  password: "", // XAMPP normalmente vacío
-  database: "cuarto_arte",
-  port: 3306,
+  password: "jZMnbIRrcqsZluuXpUdwcUdgaZWPunWC",
+  database: "railway",
+  port: 15389,
 });
 
 module.exports = db;
