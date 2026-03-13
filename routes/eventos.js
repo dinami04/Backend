@@ -64,14 +64,16 @@ router.post("/", verificarToken, (req, res) => {
   }
 
   const sql = `
-    INSERT INTO eventos (titulo, fecha, lugar, descripcion)
-    VALUES (?, ?, ?, ?)
-  `;
+ INSERT INTO eventos (titulo, fecha, lugar, descripcion)
+ VALUES (?, ?, ?, ?)
+ `;
 
-  db.query(sql, [titulo, fecha, lugar, descripcion], (err, result) => {
+  db.query(sql, [titulo, fecha, lugar, descripcion || null], (err, result) => {
     if (err) {
-      console.error("Error al crear evento:", err);
-      return res.status(500).json({ error: "Error del servidor" });
+      console.error("Error creando evento:", err);
+      return res.status(500).json({
+        error: "Error del servidor",
+      });
     }
 
     res.json({
