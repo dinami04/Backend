@@ -36,7 +36,7 @@ ORDER BY nombre ASC
 router.post("/", verificarToken, (req, res) => {
   const { nombre, telefono } = req.body;
 
-  if (!nombre || !telefono) {
+  if (!nombre) {
     return res.status(400).json({
       error: "Nombre y teléfono son obligatorios",
     });
@@ -47,7 +47,7 @@ INSERT INTO clientes (nombre, telefono)
 VALUES (?, ?)
 `;
 
-  db.query(sql, [nombre, telefono], (err, result) => {
+  db.query(sql, [nombre, telefono || null], (err, result) => {
     if (err) {
       console.error("❌ Error creando cliente:", err);
 
