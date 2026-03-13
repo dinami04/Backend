@@ -26,6 +26,7 @@ router.get("/", (req, res) => {
 
 // POST /agendas
 router.post("/", (req, res) => {
+  console.log("BODY RECIBIDO: ", req.body);
   const { nombre_proyecto, tipo, fecha, hora } = req.body;
 
   // Validaciones
