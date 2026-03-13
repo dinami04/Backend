@@ -51,11 +51,12 @@ router.post("/", authMiddleware, (req, res) => {
   }
 
   const sql = `
-    INSERT INTO pagos (id_cliente, total, anticipo)
-    VALUES (?, ?, ?)
+    INSERT INTO pagos (id_cliente, total, anticipo, restante)
+    VALUES (?, ?, ?, ?)
   `;
 
-  db.query(sql, [id_cliente, total, anticipo], (err, result) => {
+  const restante = total - anticipo;
+  db.query(sql, [id_cliente, total, anticipo, restante], (err, result) => {
     if (err) {
       console.error("Error insertar pago:", err);
       return res.status(500).json({
