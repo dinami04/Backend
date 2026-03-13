@@ -26,7 +26,7 @@ router.get("/", (req, res) => {
 
 // POST /agendas
 router.post("/", (req, res) => {
-  const { id_proyecto, tipo, fecha, hora } = req.body;
+  const { nombre_proyecto, tipo, fecha, hora } = req.body;
 
   // Validaciones
   if (!id_proyecto || !tipo || !fecha || !hora) {
@@ -36,11 +36,11 @@ router.post("/", (req, res) => {
   }
 
   const sql = `
-    INSERT INTO agendas (id_proyecto, tipo, fecha, hora)
+    INSERT INTO agendas (nombre_proyecto, tipo, fecha, hora)
     VALUES (?, ?, ?, ?)
   `;
 
-  db.query(sql, [id_proyecto, tipo, fecha, hora], (err, result) => {
+  db.query(sql, [nombre_proyecto, tipo, fecha, hora], (err, result) => {
     if (err) {
       // Error típico si el proyecto no existe (FOREIGN KEY)
       if (err.code === "ER_NO_REFERENCED_ROW_2") {
