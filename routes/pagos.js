@@ -33,7 +33,9 @@ router.get("/", authMiddleware, (req, res) => {
 // POST PAGOS
 // ==========================
 router.post("/", authMiddleware, (req, res) => {
-  const { id_cliente, total, anticipo } = req.body;
+  const id_cliente = parseInt(req.body.id_cliente);
+  const total = parseFloat(req.body.total);
+  const anticipo = parseFloat(req.body.anticipo);
 
   console.log("POST /pagos body:", req.body);
 
