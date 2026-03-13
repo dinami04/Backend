@@ -29,7 +29,7 @@ router.post("/", (req, res) => {
   const { nombre_proyecto, tipo, fecha, hora } = req.body;
 
   // Validaciones
-  if (!id_proyecto || !tipo || !fecha || !hora) {
+  if (!nombre_proyecto || !tipo || !fecha || !hora) {
     return res.status(400).json({
       error: "id_proyecto, tipo, fecha y hora son obligatorios",
     });
